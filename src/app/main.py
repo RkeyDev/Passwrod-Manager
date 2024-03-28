@@ -8,6 +8,5 @@ if __name__ == "__main__":
     It will open the GUI and start the application.
     """
 
-
     main_window = AppWindow()    
     main_window.mainloop()

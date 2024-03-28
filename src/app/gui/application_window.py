@@ -20,7 +20,7 @@ class AppWindow(tkinter.Tk):
         self.geometry(f"{WINDOW_WIDTH}x{WINDOW_HEIGHT}") #Set the size of the window
         self.title("Password manager")
         
-        ## Pack everything ##
+        ## Pack frames ##
         MainDashboard().pack()
 
     

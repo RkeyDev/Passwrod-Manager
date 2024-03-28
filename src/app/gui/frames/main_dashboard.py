@@ -1,5 +1,5 @@
 import tkinter
-from gui.frames.passwords_frame import PasswordsFrame
+from gui.frames.add_password_page import AddPasswordDashboard
 
 class MainDashboard(tkinter.Frame):
 
@@ -24,8 +24,8 @@ class MainDashboard(tkinter.Frame):
         This method changes the frame to the passwords frame.
         """
         
-        self.pack_forget()
-        PasswordsFrame(self.master).pack()
+        self.pack_forget() #Unpack the main dashboard frame
+        AddPasswordDashboard(self.master).pack() #Show the password dashboard frame on the screen
         
         
         
