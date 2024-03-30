@@ -3,10 +3,10 @@ from cryptography.fernet import Fernet
 
 
 
-class passwordEncryption:
+class PasswordEncryption:
 
 
-    def __init__(self,password:str) -> None:
+    def __init__(self,password:str = None) -> None:
         self.password = password
         self.key = Fernet.generate_key() #Generate the encryption key
 
@@ -47,16 +47,19 @@ class passwordEncryption:
 
 
 
-    def decryptKey(self,encrypted_key:bytes):
+    def decryptKey(self,encrypted_key:bytes | str):
         """
         Decrypt the encryption key.
 
         return: encryption_key <bytes>
         """
-
+        if type(encrypted_key) == str:
+            encrypted_key = encrypted_key.encode() #Encode if key is string
+        
+        
         general_encryption_key = self.getGeneralEncryptionKey()
 
-        encryption_key = Fernet(general_encryption_key).decrypt(encrypted_key)
+        encryption_key = Fernet(general_encryption_key).decrypt(encrypted_key) #Decrypt the key
 
         return encryption_key
 
@@ -75,24 +78,22 @@ class passwordEncryption:
 
 
 
-    def decryptPassword(self,encrypted_password:bytes):
+    def decryptPassword(self,encrypted_password: bytes | str, key: bytes | str):
         """
         Decrypt the password.
 
         return: decrypted_password <str>
         """
-        decrypted_password = self.cypher.decrypt(encrypted_password).decode()
+
+        if type(encrypted_password) == str:
+            encrypted_password = encrypted_password.encode() #Encode if encrypted password is string
+        
+        if type(key) == str:
+            key = key.encode() #Encode if key is string
+
+        cypher = Fernet(key)
+        decrypted_password = cypher.decrypt(encrypted_password).decode() 
         
         return decrypted_password
 
 
-
-
-password_encryption = passwordEncryption("test password")
-ecncrypted_key = password_encryption.encryptKey()
-decrypted_key = password_encryption.decryptKey(ecncrypted_key)
-
-encrypted_password = password_encryption.encryptPassword()
-decrypted_password = password_encryption.decryptPassword(encrypted_password)
-print(encrypted_password)
-print(decrypted_password)

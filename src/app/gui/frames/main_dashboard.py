@@ -19,7 +19,7 @@ class MainDashboard(tkinter.Frame):
         ## Pack everything ##
         self.create_password_button.pack()
         
-    def passwordStage(self):
+    def passwordStage(self) -> None:
         """
         This method changes the frame to the passwords frame.
         """

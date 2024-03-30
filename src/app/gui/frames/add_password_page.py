@@ -1,5 +1,4 @@
 import tkinter
-from encrypt_password import Password
 
 class AddPasswordDashboard(tkinter.Frame):
     def __init__(self,app_window: tkinter.Tk) -> None:
@@ -27,12 +26,12 @@ class AddPasswordDashboard(tkinter.Frame):
 
         
     
-    def addPassword(self):
+    def addPassword(self) -> None:
         """
-        Adds the password to the data base after encryption
+        Adds the password to the database after encryption
         """
-        #Get the password from the entry (input)
-        self.password = Password(self.password_entry.get())
+        
+
           
 
     
